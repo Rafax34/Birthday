@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Universe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+
+    <!-- Scenes -->
+    <div id="scene-intro" class="scene active">
+        <div class="intro-content">
+            <p class="intro-line line-1">Hey...</p>
+            <p class="intro-line line-2">Look at the sky tonight.</p>
+            <button class="continue-btn" aria-label="Continue">Continue ✨</button>
+        </div>
+    </div>
+
+    <div id="scene-chat" class="scene">
+        <div class="chat-container">
+            <div class="chat-messages"></div>
+        </div>
+    </div>
+
+    <div id="scene-universe" class="scene">
+        <div class="universe-text">
+            <p class="universe-line u-line-1">Every star here has something for you.</p>
+            <p class="universe-line u-line-2">Go ahead... explore.</p>
+        </div>
+        <div class="interactive-stars"></div>
+        <div class="star-counter"></div>
+    </div>
+
+    <div id="scene-constellation" class="scene">
+        <svg class="constellation-lines"></svg>
+        <div class="constellation-text">
+            <p class="const-line c-line-1">Some moments become memories...</p>
+            <p class="const-line c-line-2">And some memories become constellations.</p>
+        </div>
+        <div class="memory-section"></div>
+    </div>
+
+    <div id="scene-cake" class="scene">
+        <div class="cake-container">
+            <p class="cake-text-1">One more thing...</p>
+            <p class="cake-text-2">Make a wish.</p>
+            <div class="cake">
+                <div class="candles">
+                    <div class="candle" data-index="0">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle" data-index="1">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle" data-index="2">
+                        <div class="flame"></div>
+                    </div>
+                </div>
+                <div class="cake-top"></div>
+                <div class="cake-bottom"></div>
+            </div>
+            <p class="wish-hint">Click a candle</p>
+        </div>
+    </div>
+
+    <div id="scene-final" class="scene">
+        <div class="final-content">
+            <h1 class="final-title">HAPPY BIRTHDAY, <span class="final-name"></span> ✨</h1>
+            <p class="final-msg">I hope this year brings you<br>as much happiness as you bring<br>to the people around you.</p>
+            <p class="final-msg-small">Thank you for being part of my universe.<br>Enjoy your special day. 🌙</p>
+            <p class="final-footer">Made with something special for you.</p>
+        </div>
+        <canvas id="confetti-canvas"></canvas>
+    </div>
+
+    <!-- UI -->
+    <button class="sound-toggle" id="sound-toggle" aria-label="Toggle music">
+        <span class="sound-icon">♫</span> Sound
+    </button>
+    <audio id="bg-music" loop preload="none">
+        <source src="assets/music/background.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
