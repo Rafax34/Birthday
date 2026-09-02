@@ -571,9 +571,11 @@ function openStar(index, starEl) {
         if (e.key === "Escape") { close(); document.removeEventListener("keydown", onEsc); }
     });
 
-    // Update counter
+    // Update counter with a quick pop so the count change is legible
     const counter = document.querySelector(".star-counter");
     counter.textContent = `✦ ${starsOpened} / ${CONFIG.starData.length}`;
+    counter.classList.remove("pop");
+    requestAnimationFrame(() => counter.classList.add("pop"));
 
     // All stars opened → constellation
     if (starsOpened >= CONFIG.starData.length) {
@@ -643,9 +645,13 @@ function startConstellation() {
         svg.appendChild(line);
     }
 
-    // Animate the lines drawing in, then brighten text as the shape completes
+    // Animate the lines drawing in with a 50ms stagger so the heart reads
+    // as deliberately drawn, then brighten text as the shape completes
     setTimeout(() => {
-        svg.querySelectorAll("line").forEach((l) => l.classList.add("drawn"));
+        svg.querySelectorAll("line").forEach((l, i) => {
+            l.style.transitionDelay = i * 50 + "ms";
+            l.classList.add("drawn");
+        });
     }, reducedMotion ? 100 : 300);
 
     setTimeout(() => {
