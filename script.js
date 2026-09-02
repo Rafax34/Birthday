@@ -72,6 +72,8 @@ const CONFIG = {
     finalName: "Chabelita",
     finalMessage: "I hope this year brings you\nas much happiness as you bring\nto the people around you.",
     finalSmall: "Thank you for being part of my universe.\nEnjoy your special day. 🌙",
+    finalPhoto: "assets/images/memory.jpeg",
+    finalPhotoCaption: "", // empty → falls back to finalName
 
     // Constellation photos
     memoryPhotos: [
@@ -89,6 +91,7 @@ let mouseY = window.innerHeight / 2;
 let starsOpened = 0;
 let isMobile = false;
 let reducedMotion = false;
+let skipRequested = false;
 
 // ---- Init ----
 document.addEventListener("DOMContentLoaded", () => {
@@ -345,6 +348,25 @@ function initSceneSystem() {
     currentScene = "intro";
 }
 
+function skipToEnd() {
+    if (skipRequested) return;
+    skipRequested = true;
+
+    const skipBtn = document.getElementById("skip-btn");
+    if (skipBtn) skipBtn.classList.add("hidden");
+
+    // Ensure final scene is initialized (safe to call multiple times)
+    initFinal();
+
+    // Instant transition to final — no 1.2s fade delay when skipping
+    const current = document.querySelector(".scene.active");
+    const next = document.getElementById("scene-final");
+    if (current) current.classList.remove("active");
+    next.classList.add("active");
+    currentScene = "final";
+    startFinal();
+}
+
 function transitionTo(sceneId, callback) {
     const current = document.querySelector(".scene.active");
     const next = document.getElementById("scene-" + sceneId);
@@ -392,14 +414,15 @@ function charDelay(i, text) {
     const prev = text[i - 1] || "";
     const ch = text[i];
     const continuingPunct = /[,.!?…，。！？;；]/.test(ch);
-    if (/[.!?…。！？]/.test(prev) && !continuingPunct) return rand(300, 600); // after periods
-    if ((prev === "," || prev === "，") && !continuingPunct) return rand(150, 300); // after commas
-    if (ch === " ") return rand(20, 40);
-    if (continuingPunct) return rand(120, 250);
-    return rand(40, 70);
+    if (/[.!?…。！？]/.test(prev) && !continuingPunct) return rand(200, 350); // after periods
+    if ((prev === "," || prev === "，") && !continuingPunct) return rand(100, 180); // after commas
+    if (ch === " ") return rand(15, 30);
+    if (continuingPunct) return rand(80, 150);
+    return rand(30, 50);
 }
 
 function startChat() {
+    if (skipRequested) return;
     const container = document.querySelector(".chat-messages");
     container.innerHTML = "";
     let cancelled = false;
@@ -482,6 +505,7 @@ function startChat() {
 function initStars() {}
 
 function startUniverse() {
+    if (skipRequested) return;
     const container = document.querySelector(".interactive-stars");
     const counter = document.querySelector(".star-counter");
     container.innerHTML = "";
@@ -606,6 +630,7 @@ function initConstellation() {
 }
 
 function startConstellation() {
+    if (skipRequested) return;
     const svg = document.querySelector(".constellation-lines");
     const scene = document.getElementById("scene-constellation");
     svg.innerHTML = "";
@@ -685,6 +710,7 @@ function initCake() {
 }
 
 function startCake() {
+    if (skipRequested) return;
     setTimeout(() => {
         document.querySelector(".cake-text-1").classList.add("visible");
     }, reducedMotion ? 100 : 600);
@@ -730,13 +756,30 @@ function initFinal() {
 
     const small = document.querySelector(".final-msg-small");
     small.innerHTML = CONFIG.finalSmall.replace(/\n/g, "<br>");
+
+    const photo = document.querySelector(".final-photo");
+    if (photo && CONFIG.finalPhoto) {
+        photo.querySelector("img").src = CONFIG.finalPhoto;
+        photo.querySelector("figcaption").textContent =
+            CONFIG.finalPhotoCaption || CONFIG.finalName;
+    }
 }
 
 function startFinal() {
-    const els = [".final-title", ".final-msg", ".final-msg-small", ".final-footer"];
+    // Re-initialize to guarantee content is set (covers normal flow + skip flow)
+    initFinal();
+
+    const els = [".final-title", ".final-photo", ".final-msg", ".final-msg-small", ".final-footer"];
     els.forEach((sel, i) => {
+        const el = document.querySelector(sel);
+        if (el) {
+            // Ensure clean state before animation
+            el.classList.remove("visible");
+            // Force reflow to restart animation if re-triggered
+            void el.offsetWidth;
+        }
         setTimeout(() => {
-            document.querySelector(sel).classList.add("visible");
+            document.querySelector(sel)?.classList.add("visible");
         }, reducedMotion ? 100 * (i + 1) : 600 + i * 800);
     });
 
@@ -840,4 +883,10 @@ function initMusic() {
             btn.classList.remove("playing");
         }
     });
+
+    // Skip to end
+    const skipBtn = document.getElementById("skip-btn");
+    if (skipBtn) {
+        skipBtn.addEventListener("click", skipToEnd);
+    }
 }

@@ -90,14 +90,14 @@ body.cursor-star #cursor {
     z-index: 1;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.6s var(--ease), visibility 0s 0.6s;
+    transition: opacity 0.45s var(--ease), visibility 0s 0.45s;
     pointer-events: none;
 }
 
 .scene.active {
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.6s var(--ease), visibility 0s 0s;
+    transition: opacity 0.45s var(--ease), visibility 0s 0s;
     pointer-events: auto;
 }
 
@@ -736,6 +736,45 @@ body.cursor-star #cursor {
     z-index: 2;
 }
 
+/* Polaroid photo card — the emotional anchor of the finale */
+.final-photo {
+    width: min(200px, 62vw);
+    margin: 0 auto 36px;
+    padding: 8px 8px 30px;
+    background: rgba(232, 224, 240, 0.06);
+    border: 1px solid rgba(167, 139, 250, 0.22);
+    border-radius: 6px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 30px rgba(167, 139, 250, 0.14);
+    opacity: 0;
+    transform: rotate(-2deg) scale(0.92) translateY(16px);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+
+.final-photo.visible {
+    opacity: 1;
+    transform: rotate(-2deg);
+}
+
+.final-photo img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+    border-radius: 3px;
+    background: rgba(8, 13, 36, 0.4);
+}
+
+.final-photo figcaption {
+    padding-top: 10px;
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-shadow: var(--glow-l2);
+}
+
 .final-title {
     font-family: var(--font-heading);
     font-size: clamp(1.6rem, 5vw, 3rem);
@@ -845,6 +884,27 @@ body.cursor-star #cursor {
     color: var(--glow);
 }
 
+.skip-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 50;
+    background: rgba(8, 13, 36, 0.5);
+    border: 1px solid rgba(167, 139, 250, 0.15);
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: border-color 0.3s, color 0.3s, background 0.3s, opacity 0.3s;
+}
+
+.skip-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .sound-icon {
     font-size: 0.9rem;
 }
@@ -853,7 +913,8 @@ body.cursor-star #cursor {
 .i-star:focus-visible,
 .continue-btn:focus-visible,
 .close-panel:focus-visible,
-.sound-toggle:focus-visible {
+.sound-toggle:focus-visible,
+.skip-btn:focus-visible {
     outline: 2px solid var(--violet-glow);
     outline-offset: 3px;
 }
@@ -879,10 +940,17 @@ body.cursor-star #cursor {
         border-color: rgba(167, 139, 250, 0.4);
         color: var(--text);
     }
+    .skip-btn:hover {
+        border-color: rgba(167, 139, 250, 0.4);
+        color: var(--text);
+    }
     .memory-section.visible .memory-photo:hover {
         transform: rotate(0deg) translateY(-10px);
         transition-delay: 0s; /* don't inherit the entrance stagger delay */
         box-shadow: 0 10px 36px rgba(0, 0, 0, 0.4), 0 0 20px rgba(167, 139, 250, 0.15);
+    }
+    .final-photo.visible:hover {
+        transform: rotate(0deg) translateY(-6px);
     }
 }
 
@@ -890,6 +958,7 @@ body.cursor-star #cursor {
 .continue-btn:active,
 .star-panel .close-panel:active,
 .sound-toggle:active,
+.skip-btn:active,
 .candle:active {
     transform: scale(0.97);
     transition: transform 160ms var(--ease);
@@ -909,6 +978,7 @@ body.cursor-star #cursor {
     .continue-btn:active,
     .star-panel .close-panel:active,
     .sound-toggle:active,
+    .skip-btn:active,
     .candle:active {
         transform: none; /* press scale is movement; drop under reduced motion */
     }
@@ -946,9 +1016,24 @@ body.cursor-star #cursor {
         width: min(160px, 40vw);
     }
 
+    .memory-section {
+        gap: 16px;
+        padding-bottom: 4vh;
+    }
+
+    .final-photo {
+        width: min(170px, 58vw);
+        margin-bottom: 24px;
+    }
+
     .sound-toggle {
         bottom: 16px;
         right: 16px;
+    }
+
+    .skip-btn {
+        bottom: 16px;
+        left: 16px;
     }
 
     /* Reduce neon glow on mobile for crispness/readability */
