@@ -4,7 +4,7 @@
 
 // ============ CONFIG — EDIT HERE ============
 const CONFIG = {
-    girlName: "Chabelita",
+    girlName: "My Love",
     musicEnabled: true,
 
     // Chat messages — edit the conversation
@@ -69,17 +69,17 @@ const CONFIG = {
     ],
 
     // Final message
-    finalName: "Chabelita",
+    finalName: "My Love",
     finalMessage: "I hope this year brings you\nas much happiness as you bring\nto the people around you.",
     finalSmall: "Thank you for being part of my universe.\nEnjoy your special day. 🌙",
-    finalPhoto: "assets/images/memory.jpeg",
-    finalPhotoCaption: "", // empty → falls back to finalName
+    finalPhoto: "assets/images/Last event image.jpeg",
+    finalPhotoCaption: "Have A Nice Day", // empty → falls back to finalName
 
     // Constellation photos
     memoryPhotos: [
-        { path: "assets/images/memory.jpeg", caption: "A little memory" },
+        { path: "assets/images/unforgetable.jpeg", caption: "A little memory" },
         { path: "assets/images/some-memory.jpeg", caption: "Something beautiful" },
-        { path: "assets/images/unforgetable.jpeg", caption: "Unforgettable" },
+        { path: "assets/images/memory.jpeg", caption: "Unforgettable" },
     ],
 };
 // ============ END CONFIG ============

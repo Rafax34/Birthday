@@ -730,8 +730,8 @@ body.cursor-star #cursor {
 /* ---- SCENE 6: Final ---- */
 .final-content {
     text-align: center;
-    max-width: 600px;
-    padding: 0 24px;
+    max-width: 1200px;
+    padding: 12vh 24px 0;
     position: relative;
     z-index: 2;
 }
@@ -777,7 +777,7 @@ body.cursor-star #cursor {
 
 .final-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.6rem, 5vw, 3rem);
+    font-size: clamp(1.6rem, 4.5vw, 2.4rem);
     font-weight: 400;
     letter-spacing: 0.08em;
     color: var(--ice);
