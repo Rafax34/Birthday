@@ -713,10 +713,10 @@ function startCake() {
     if (skipRequested) return;
     setTimeout(() => {
         document.querySelector(".cake-text-1").classList.add("visible");
-    }, reducedMotion ? 100 : 600);
+    }, reducedMotion ? 100 : 400);
     setTimeout(() => {
         document.querySelector(".cake-text-2").classList.add("visible");
-    }, reducedMotion ? 200 : 1600);
+    }, reducedMotion ? 200 : 1800);
     setTimeout(() => {
         document.querySelector(".cake").classList.add("visible");
     }, reducedMotion ? 300 : 2400);
