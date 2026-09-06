@@ -600,7 +600,7 @@ body.cursor-star #cursor {
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 1s var(--ease), transform 1s var(--ease);
-    animation: wishPulse 4s ease-in-out 1.5s infinite; /* wait out the entrance fade */
+    animation: wishPulse 4s ease-in-out 3s infinite; /* starts after entrance transition finishes */
 }
 
 .cake-text-2.visible {
