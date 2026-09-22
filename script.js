@@ -39,12 +39,11 @@ const CONFIG = {
         },
         {
             label: "REMINDER",
-            title: "A funny little reminder",
+            title: "A tiny reminder",
             paragraphs: [
-                "Yes...",
-                "You're getting older.",
-                "But don't worry.",
-                "You still look amazing.",
+                "Hey, you! Don't forget to take care of yourself.",
+                "Rest enough, eat well,",
+                "and remember that you deserve some time to slow down too. :)",
             ],
         },
         {
