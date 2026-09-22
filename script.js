@@ -712,16 +712,16 @@ function startCake() {
     if (skipRequested) return;
     setTimeout(() => {
         document.querySelector(".cake-text-1").classList.add("visible");
-    }, reducedMotion ? 100 : 400);
+    }, reducedMotion ? 100 : 600);
     setTimeout(() => {
         document.querySelector(".cake-text-2").classList.add("visible");
-    }, reducedMotion ? 200 : 1800);
+    }, reducedMotion ? 200 : 2000);
     setTimeout(() => {
         document.querySelector(".cake").classList.add("visible");
-    }, reducedMotion ? 300 : 2400);
+    }, reducedMotion ? 300 : 1400);
     setTimeout(() => {
         document.querySelector(".wish-hint").classList.add("visible");
-    }, reducedMotion ? 400 : 3600);
+    }, reducedMotion ? 400 : 3400);
 
     // Candle click
     document.querySelectorAll(".candle").forEach((c) => {
