@@ -31,11 +31,10 @@ const CONFIG = {
         },
         {
             label: "SOMETHING ABOUT YOU",
-            title: "Something I like about you",
+            title: "Something I love about you",
             paragraphs: [
                 "Your smile.",
-                "Not just because it looks beautiful,",
-                "but because somehow it can make everything feel lighter.",
+                "There's something about it that makes even ordinary moments feel a little more special.",
             ],
         },
         {
