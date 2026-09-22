@@ -70,7 +70,7 @@ const CONFIG = {
     finalName: "My Love",
     finalMessage: "I hope this year brings you\nas much happiness as you bring\nto the people around you.",
     finalSmall: "Thank you for being part of my universe.\nEnjoy your special day. 🌙",
-    finalPhoto: "assets/images/Last Event Image.jpeg",
+    finalPhoto: "assets/images/Last event image.jpeg",
     finalPhotoCaption: "Have A Nice Day", // empty → falls back to finalName
 
     // Constellation photos
