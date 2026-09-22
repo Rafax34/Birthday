@@ -11,10 +11,10 @@ const CONFIG = {
     chatMessages: [
         "Hey...",
         "So... today is a pretty special day.",
-        "I was thinking about what kind of gift I should give you.",
-        "Something normal didn't feel special enough.",
+        "I've been thinking about what kind of gift I could give you.",
+        "But somehow, a normal gift didn't feel special enough.",
         "Then I thought...",
-        "Why not make you a little universe?",
+        "Why not make you a little universe, just for you?",
     ],
 
     // Star content — each star reveals one of these
