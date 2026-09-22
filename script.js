@@ -413,11 +413,11 @@ function charDelay(i, text) {
     const prev = text[i - 1] || "";
     const ch = text[i];
     const continuingPunct = /[,.!?…，。！？;；]/.test(ch);
-    if (/[.!?…。！？]/.test(prev) && !continuingPunct) return rand(150, 250); // after periods
-    if ((prev === "," || prev === "，") && !continuingPunct) return rand(70, 120); // after commas
-    if (ch === " ") return rand(10, 20);
-    if (continuingPunct) return rand(60, 100);
-    return rand(20, 35);
+    if (/[.!?…。！？]/.test(prev) && !continuingPunct) return rand(100, 180); // after periods
+    if ((prev === "," || prev === "，") && !continuingPunct) return rand(50, 80); // after commas
+    if (ch === " ") return rand(8, 15);
+    if (continuingPunct) return rand(40, 70);
+    return rand(15, 25);
 }
 
 function startChat() {
@@ -458,7 +458,7 @@ function startChat() {
         }
 
         requestAnimationFrame(() => bubble.classList.add("visible"));
-        await wait(70); // let the bubble fade in slightly before typing
+        await wait(50); // let the bubble fade in slightly before typing
 
         const cursor = document.createElement("span");
         cursor.className = "type-cursor";
@@ -483,9 +483,9 @@ function startChat() {
         const msgs = CONFIG.chatMessages;
         for (let i = 0; i < msgs.length && !cancelled; i++) {
             // Pause between messages, then show the indicator, then type
-            if (i > 0) await wait(reducedMotion ? 100 : rand(400, 800));
+            if (i > 0) await wait(reducedMotion ? 100 : rand(250, 500));
             const ind = showTypingIndicator();
-            await wait(reducedMotion ? 200 : rand(700, 1200));
+            await wait(reducedMotion ? 200 : rand(400, 800));
             if (cancelled) return;
             await hideTypingIndicator(ind);
             await typeMessage(msgs[i], i === msgs.length - 1);
