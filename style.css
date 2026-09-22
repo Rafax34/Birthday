@@ -608,6 +608,10 @@ body.cursor-star #cursor {
     transform: translateY(0);
 }
 
+.cake-text-2.hidden {
+    display: none;
+}
+
 .cake-text-2::before,
 .cake-text-2::after {
     content: '';
